@@ -1,11 +1,15 @@
 import React from 'react';
+import clsx from 'clsx';
+import Wrapper, { WrapperProps } from './Wrapper';
 
-export interface SkeletonProps {
-  className?: string;
-}
+import styles from './Skeleton.module.scss';
+
+export interface SkeletonProps extends WrapperProps {}
 
 const Skeleton = (props: SkeletonProps) => {
-  return <div className={props.className}>123</div>;
+  const { className, ...rest } = props;
+
+  return <Wrapper className={clsx(styles['skeleton'], className)} {...rest} />;
 };
 
 export default Skeleton;

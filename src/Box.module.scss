@@ -1,0 +1,39 @@
+.skeleton-box {
+  &.border {
+    border: 1px solid rgba(243, 243, 243, 0.7);
+  }
+  &.border-left {
+    border-left: 1px solid rgba(243, 243, 243, 0.7);
+  }
+  &.border-right {
+    border-right: 1px solid rgba(243, 243, 243, 0.7);
+  }
+  &.border-top {
+    border-top: 1px solid rgba(243, 243, 243, 0.7);
+  }
+  &.border-bottom {
+    border-bottom: 1px solid rgba(243, 243, 243, 0.7);
+  }
+
+  &.flex {
+    display: flex;
+  }
+  &.flex1 {
+    flex: 1;
+  }
+  &.flex-column {
+    flex-direction: column;
+  }
+  &.flex-row {
+    flex-direction: row;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.justify-center {
+    justify-content: center;
+  }
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+}
