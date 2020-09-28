@@ -8,10 +8,11 @@ import styles from './Skeleton.module.scss';
 
 export interface SkeletonProps extends WrapperProps {
   theme?: Theme;
+  animationDuration?: number;
 }
 
 const Skeleton = (props: SkeletonProps) => {
-  const { className, theme, ...rest } = props;
+  const { className, theme, animationDuration = 800, ...rest } = props;
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,6 +28,9 @@ const Skeleton = (props: SkeletonProps) => {
                     ? {
                         background: `linear-gradient(90deg, transparent, ${highlightColor}, transparent)`
                       }
+                    : undefined),
+                  ...(animationDuration
+                    ? { animationDuration: `${animationDuration}ms` }
                     : undefined)
                 }}
               />
