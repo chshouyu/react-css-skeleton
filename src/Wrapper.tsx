@@ -1,4 +1,4 @@
-import React, { ReactElement, cloneElement } from 'react';
+import React, { ReactElement, cloneElement, ReactNode } from 'react';
 import range from 'lodash.range';
 import Box, { BoxProps } from './Box';
 
@@ -8,10 +8,11 @@ export interface WrapperProps extends Omit<BoxProps, 'children'> {
    * 子元素重复几份，避免自己写 range 循环了
    */
   childrenCount?: number;
+  afterNode?: ReactNode;
 }
 
 const Wrapper = (props: WrapperProps) => {
-  const { children, childrenCount, ...rest } = props;
+  const { children, childrenCount, afterNode, ...rest } = props;
 
   const getChildren = () => {
     if (childrenCount && childrenCount > 0 && !Array.isArray(children)) {
@@ -27,7 +28,12 @@ const Wrapper = (props: WrapperProps) => {
     return children;
   };
 
-  return <Box {...rest}>{getChildren()}</Box>;
+  return (
+    <Box {...rest}>
+      {getChildren()}
+      {afterNode}
+    </Box>
+  );
 };
 
 export default Wrapper;
