@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode } from 'react';
 import clsx from 'clsx';
+import { ThemeContext } from './ThemeProvider';
 
 import styles from './Box.module.scss';
 
@@ -129,17 +130,24 @@ const Box = (props: BoxProps) => {
     ...marginStyle,
     ...paddingStyle,
     ...radiusStyle,
-    ...restStyle,
-    ...style
+    ...restStyle
   };
 
   return (
-    <div
-      className={clsx(styles['skeleton-box'], flexClassNames, borderClassNames, className)}
-      style={finalStyle}
-    >
-      {children}
-    </div>
+    <ThemeContext.Consumer>
+      {({ borderColor }) => (
+        <div
+          className={clsx(styles['skeleton-box'], flexClassNames, borderClassNames, className)}
+          style={{
+            ...finalStyle,
+            ...(borderColor ? { borderColor } : undefined),
+            ...style
+          }}
+        >
+          {children}
+        </div>
+      )}
+    </ThemeContext.Consumer>
   );
 };
 

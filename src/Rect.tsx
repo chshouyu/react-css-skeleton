@@ -1,6 +1,6 @@
-import React, { CSSProperties } from 'react';
-import config from './config';
+import React from 'react';
 import Box, { BoxProps } from './Box';
+import { ThemeContext } from './ThemeProvider';
 
 export interface RectProps
   extends Pick<
@@ -22,12 +22,17 @@ export interface RectProps
 const Rect = (props: RectProps) => {
   const { style, radius = 2, ...rest } = props;
 
-  const innerStyle: CSSProperties = {
-    backgroundColor: config.backgroundColor,
-    ...style
-  };
-
-  return <Box style={innerStyle} radius={radius} {...rest} />;
+  return (
+    <ThemeContext.Consumer>
+      {({ backgroundColor }) => (
+        <Box
+          style={{ ...(backgroundColor ? { backgroundColor } : undefined), ...style }}
+          radius={radius}
+          {...rest}
+        />
+      )}
+    </ThemeContext.Consumer>
+  );
 };
 
 export default Rect;
