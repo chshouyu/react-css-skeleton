@@ -1,4 +1,11 @@
-import React, { ReactNode, Fragment, SFC, CSSProperties, useState, useEffect } from 'react';
+import React, {
+  ReactNode,
+  Fragment,
+  FunctionComponent,
+  CSSProperties,
+  useState,
+  useEffect
+} from 'react';
 import { CSSTransition } from 'react-transition-group';
 import usePrevious from './usePrevious';
 
@@ -10,7 +17,7 @@ export interface SkeletonWithLoadingProps {
 }
 
 const withLoading = <P extends unknown>(element: ReactNode | ((props?: P) => ReactNode)) => {
-  const SkeletonWithLoading: SFC<SkeletonWithLoadingProps & { extraProps?: P }> = ({
+  const SkeletonWithLoading: FunctionComponent<SkeletonWithLoadingProps & { extraProps?: P }> = ({
     isLoading,
     children,
     className,
